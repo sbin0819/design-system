@@ -5,13 +5,23 @@ import {
   PrimaryButton,
   SecondaryButton,
   TertiaryButton,
-} from './components/Button';
+  SignUpModal,
+} from './components';
 import { GlobalStyle, darkTheme, defaultTheme } from './utils';
 
 const App = () => {
   const [useDarkTheme, setUseDarkTheme] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
   return (
     <ThemeProvider theme={useDarkTheme ? darkTheme : defaultTheme}>
+      <button
+        style={{ margin: '0 16px 24px', padding: '8px', background: 'none' }}
+        onClick={() => setShowModal(!showModal)}
+      >
+        Toggle Modal
+      </button>
+
       <button
         style={{ margin: '0 16px 24px', padding: '8px', background: 'none' }}
         onClick={() => setUseDarkTheme(true)}
@@ -36,9 +46,10 @@ const App = () => {
           justifyContent: 'space-around',
         }}
       >
-        <PrimaryButton modifiers={['small']}>Hello World</PrimaryButton>
+        {/* <PrimaryButton modifiers={['small']}>Hello World</PrimaryButton>
         <SecondaryButton modifiers={['large']}>Goodbye World</SecondaryButton>
-        <TertiaryButton>Hey</TertiaryButton>
+        <TertiaryButton>Hey</TertiaryButton> */}
+        <SignUpModal showModal={showModal} setShowModal={setShowModal} />
         <GlobalStyle />
       </div>
     </ThemeProvider>
